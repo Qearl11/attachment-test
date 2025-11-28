@@ -1,0 +1,179 @@
+.slider-container {
+  margin: 60px 0 40px 0;
+  position: relative;
+  padding: 0; /* No padding, we handle alignment via width/margins */
+}
+
+/* 当前选中值的显示 */
+.slider-current-value {
+  position: absolute;
+  top: -45px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #5e548e;
+  font-size: 1.2rem;
+  font-weight: bold;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.slider-current-value.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 
+   Input Range Styling 
+   We make the track transparent so we can render our own track/dots behind it.
+*/
+.slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  height: 24px; /* Match thumb height to avoid clipping */
+  background: transparent; /* Transparent track */
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 10; /* Above everything */
+  margin: 0; /* Will be set inline */
+  padding: 0;
+}
+
+/* Thumb - Default Gray */
+.slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: grab;
+  border: 2px solid white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s, background-color 0.3s;
+  margin-top: 0; /* Since input height is 24px */
+}
+
+/* Thumb - Active Purple */
+.slider-input.has-value::-webkit-slider-thumb {
+  background: #5e548e;
+  box-shadow: 0 2px 6px rgba(94, 84, 142, 0.4);
+}
+
+.slider-input::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+  cursor: grabbing;
+}
+
+/* Firefox Thumb */
+.slider-input::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: grab;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s, background-color 0.3s;
+}
+
+.slider-input.has-value::-moz-range-thumb {
+  background: #5e548e;
+}
+
+/* Custom Track Layer */
+.slider-track-layer {
+  position: absolute;
+  top: 9px; /* (24px thumb - 6px track) / 2 = 9px offset to center vertically */
+  left: 0;
+  right: 0;
+  height: 6px;
+  pointer-events: none;
+}
+
+.slider-track-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #e0e0e0;
+  border-radius: 3px;
+}
+
+.slider-track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #5e548e;
+  border-radius: 3px;
+  transition: width 0.1s ease;
+}
+
+/* Labels */
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  position: relative;
+}
+
+.slider-label-item {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.slider-label-item.active {
+  color: #5e548e;
+  font-weight: 600;
+}
+
+.slider-label-item:hover {
+  color: #5e548e;
+}
+
+/* Dots positioned relative to the label, but moved up to the track */
+.slider-dot {
+  position: absolute;
+  top: -28px; /* Move up to align with track */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #d1d1d1;
+  border-radius: 50%;
+  transition: all 0.3s;
+  z-index: 5; /* Below input, above track bg */
+}
+
+.slider-label-item.active .slider-dot {
+  background-color: #5e548e;
+  transform: translateX(-50%) scale(1.4);
+}
+
+.slider-label-item:hover .slider-dot {
+  background-color: #8e84be;
+}
+
+.slider-label-item.active::before {
+  background-color: #5e548e;
+  transform: scale(1.4);
+}
+
+/* 悬停效果 */
+.slider-label-item:hover::before {
+  background-color: #8e84be;
+}
