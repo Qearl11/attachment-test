@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/attachment-test/static/css/main.a6865204.css",
+    "main.js": "/attachment-test/static/js/main.f59073bd.js",
+    "index.html": "/attachment-test/index.html",
+    "main.a6865204.css.map": "/attachment-test/static/css/main.a6865204.css.map",
+    "main.f59073bd.js.map": "/attachment-test/static/js/main.f59073bd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a6865204.css",
+    "static/js/main.f59073bd.js"
+  ]
+}
